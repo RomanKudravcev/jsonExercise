@@ -1,5 +1,8 @@
 {
-  "id": 1,
-  "name": "Lampshade",
-  "price": 1
+  "id" : 1,
+  "name" : "Oppenheimer",
+  "price" : 20,
+  "genre" : {
+    "name" : "fun"
+  }
 }

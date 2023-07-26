@@ -1,0 +1,59 @@
+plugins {
+    id 'java'
+    id 'application'
+	id 'idea'
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+}
+
+dependencies {
+	implementation 'com.networknt:json-schema-validator:1.0.82'
+    implementation group: 'org.slf4j', name: 'slf4j-nop', version: '2.0.7'
+
+}
+
+
+def srcDir = file("src/main/java/jsonfun")
+def schemaDir = file("src/main/resources/")
+/*
+tasks.register('generateSchema') {
+	group = "jaxbtools"
+	description = "Generate a XSD schema from annotated Java classes"
+	dependsOn 'compileJava'
+	doLast {
+		ant.taskdef(name: 'schemagen', classname: 'com.sun.tools.jxc.SchemaGenTask', classpath: configurations.jaxbtools.asPath)
+		schemaDir.mkdirs()
+		ant.schemagen(
+				srcdir: srcDir,
+				destdir: schemaDir,
+				classpath: configurations.jaxbtools.asPath + ";./build/classes/java/main",
+				includes: "Person.java",
+				includeAntRuntime: false,
+				debug: true,
+				verbose: true)
+	}
+}
+
+def generatedClassesDir = file("$buildDir/sources-generated-from-schema")
+tasks.register('generateClasses') {
+	group = "jaxbtools"
+	description = "Generate Java classes from a XSD schema"
+	doLast {
+		ant.taskdef(name: 'xjc', classname: 'com.sun.tools.xjc.XJCTask', classpath: configurations.jaxbtools.asPath)
+		generatedClassesDir.mkdirs()
+		ant.xjc(
+				destdir: generatedClassesDir,
+				schema: 'build/schema/schema1.xsd'
+		)
+	}
+}
+*/
+
+
+// Define the main class for the application
+mainClassName = 'jsonfun.Main'

@@ -1,60 +1,69 @@
+import com.github.victools.jsonschema.generator.OptionPreset;
+import com.github.victools.jsonschema.generator.SchemaGenerator;
+import com.github.victools.jsonschema.generator.SchemaGeneratorConfigBuilder;
+import com.github.victools.jsonschema.generator.SchemaVersion;
+import com.github.victools.jsonschema.module.jackson.JacksonModule;
+import com.github.victools.jsonschema.module.jackson.JacksonOption;
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'com.github.victools', name: 'jsonschema-generator', version: '4.31.1'
+        classpath group: 'com.github.victools', name: 'jsonschema-module-jackson', version: '4.21.0'
+    }
+}
+
 plugins {
     id 'java'
     id 'application'
-	id 'idea'
+    id 'idea'
+    id 'java-library'
 }
 
 repositories {
     mavenCentral()
 }
 
-configurations {
-}
-
 dependencies {
-	implementation 'com.networknt:json-schema-validator:1.0.82'
+    implementation 'com.networknt:json-schema-validator:1.0.82'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.8'
     implementation group: 'org.slf4j', name: 'slf4j-nop', version: '2.0.7'
-
 }
 
+task generateSchema {
+    group = "jsontools"
+    description = "Generate a JSON schema from annotated Java classes"
 
-def srcDir = file("src/main/java/jsonfun")
-def schemaDir = file("src/main/resources/")
-/*
-tasks.register('generateSchema') {
-	group = "jaxbtools"
-	description = "Generate a XSD schema from annotated Java classes"
-	dependsOn 'compileJava'
-	doLast {
-		ant.taskdef(name: 'schemagen', classname: 'com.sun.tools.jxc.SchemaGenTask', classpath: configurations.jaxbtools.asPath)
-		schemaDir.mkdirs()
-		ant.schemagen(
-				srcdir: srcDir,
-				destdir: schemaDir,
-				classpath: configurations.jaxbtools.asPath + ";./build/classes/java/main",
-				includes: "Person.java",
-				includeAntRuntime: false,
-				debug: true,
-				verbose: true)
-	}
+    doLast {
+        def classDirectory = file("./build/classes/java/main")
+        def schemaFile = file("src/main/resources/schema.json")
+
+        // Create a URLClassLoader with the classDirectory as the classpath
+        URL[] urls = [classDirectory.toURI().toURL()]
+        URLClassLoader urlClassLoader = new URLClassLoader(urls, this.getClass().getClassLoader())
+
+        // Load the Film class using the URLClassLoader
+        Class<?> filmClass = urlClassLoader.loadClass("model.Film")
+
+        // Configure JSON schema generator
+        def module = new JacksonModule(JacksonOption.RESPECT_JSONPROPERTY_ORDER)
+        def config = new SchemaGeneratorConfigBuilder(SchemaVersion.DRAFT_2019_09, OptionPreset.PLAIN_JSON)
+                .with(module)
+                .build()
+        def generator = new SchemaGenerator(config)
+
+        // Generate JSON schema
+        def jsonSchema = generator.generateSchema(filmClass)
+        def jsonSchemaAsString = jsonSchema.toPrettyString()
+        println jsonSchemaAsString
+
+        // Write the generated JSON schema to the file
+        schemaFile.text = jsonSchemaAsString
+    }
 }
-
-def generatedClassesDir = file("$buildDir/sources-generated-from-schema")
-tasks.register('generateClasses') {
-	group = "jaxbtools"
-	description = "Generate Java classes from a XSD schema"
-	doLast {
-		ant.taskdef(name: 'xjc', classname: 'com.sun.tools.xjc.XJCTask', classpath: configurations.jaxbtools.asPath)
-		generatedClassesDir.mkdirs()
-		ant.xjc(
-				destdir: generatedClassesDir,
-				schema: 'build/schema/schema1.xsd'
-		)
-	}
-}
-*/
-
 
 // Define the main class for the application
 mainClassName = 'jsonfun.Main'

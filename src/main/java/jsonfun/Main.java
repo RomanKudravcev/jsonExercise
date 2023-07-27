@@ -17,15 +17,15 @@ public class Main {
         JSONConverter jsonConverter = new JSONConverter();
         Path outputPath = Paths.get("src/output/output.json");
 
-        // Convert Film object to JSON and save it to the output file
+        // Convert model.Film object to JSON and save it to the output file
         jsonConverter.convertObjectToJSON(film1, outputPath);
 
 
-        // Convert JSON file to Film object
+        // Convert JSON file to model.Film object
         File inputFile = new File("src/main/resources/film.json");
         Film film2 = jsonConverter.convertJSONToObject(Film.class, inputFile);
 
-        // Display the converted Film object
+        // Display the converted model.Film object
         System.out.println(film2.toString());
     }
 }

@@ -10,7 +10,7 @@ import java.util.Set;
 public class JSONValidation {
     public static void main(String[] args) {
         ObjectMapper mapper = new ObjectMapper();
-        JsonSchemaFactory factory = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V4);
+        JsonSchemaFactory factory = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V201909);
 
         try {
             // Load the JSON schema

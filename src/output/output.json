@@ -1,0 +1,8 @@
+{
+  "id" : 0,
+  "name" : "Barbie",
+  "price" : 11,
+  "genre" : {
+    "name" : "horror"
+  }
+}

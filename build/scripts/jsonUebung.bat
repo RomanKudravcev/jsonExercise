@@ -68,7 +68,7 @@ goto fail
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\jsonUebung.jar;%APP_HOME%\lib\json-schema-validator-1.0.82.jar;%APP_HOME%\lib\slf4j-nop-2.0.7.jar;%APP_HOME%\lib\itu-1.7.0.jar;%APP_HOME%\lib\jackson-annotations-2.14.2.jar;%APP_HOME%\lib\jackson-core-2.14.2.jar;%APP_HOME%\lib\jackson-dataformat-yaml-2.14.2.jar;%APP_HOME%\lib\jackson-databind-2.14.2.jar;%APP_HOME%\lib\slf4j-api-2.0.7.jar;%APP_HOME%\lib\snakeyaml-1.33.jar
+set CLASSPATH=%APP_HOME%\lib\jsonUebung.jar;%APP_HOME%\lib\json-schema-validator-1.0.82.jar;%APP_HOME%\lib\jackson-annotations-2.14.2.jar;%APP_HOME%\lib\jackson-core-2.14.2.jar;%APP_HOME%\lib\jackson-dataformat-yaml-2.14.2.jar;%APP_HOME%\lib\jackson-databind-2.14.2.jar;%APP_HOME%\lib\slf4j-nop-2.0.7.jar;%APP_HOME%\lib\itu-1.7.0.jar;%APP_HOME%\lib\slf4j-api-2.0.7.jar;%APP_HOME%\lib\snakeyaml-1.33.jar
 
 
 @rem Execute jsonUebung

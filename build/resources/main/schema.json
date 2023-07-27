@@ -1,25 +1,23 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "type": "object",
-  "properties": {
-    "id": {
-      "type": "integer"
+  "$schema" : "https://json-schema.org/draft/2019-09/schema",
+  "type" : "object",
+  "properties" : {
+    "id" : {
+      "type" : "integer"
     },
-    "name": {
-      "type": "string"
+    "name" : {
+      "type" : "string"
     },
-    "price": {
-      "type": "integer"
+    "price" : {
+      "type" : "integer"
     },
-    "genre": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
+    "genre" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
         }
-      },
-      "required": ["name"]
+      }
     }
-  },
-  "required": ["id", "name", "price", "genre"]
+  }
 }

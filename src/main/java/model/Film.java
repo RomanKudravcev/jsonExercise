@@ -1,9 +1,10 @@
 package model;
 
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+@JsonPropertyOrder({"id", "name", "price", "genre"})
 public class Film {
     private int id;
     private String name;
@@ -54,7 +55,7 @@ public class Film {
 
     @Override
     public String toString() {
-        return "Film{" +
+        return "model.Film{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +

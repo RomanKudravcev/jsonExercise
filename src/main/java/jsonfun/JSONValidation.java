@@ -21,7 +21,7 @@ public class JSONValidation {
             JsonSchema jsonSchema = factory.getSchema(schemaInputStream);
 
             // Load the JSON data to validate
-            InputStream jsonInputStream = JSONValidation.class.getResourceAsStream("/film.json");
+            InputStream jsonInputStream = JSONValidation.class.getResourceAsStream("/movies.json");
             if (jsonInputStream == null) {
                 throw new IllegalStateException("JSON data file not found in resources.");
             }

@@ -33,7 +33,7 @@ dependencies {
     implementation group: 'org.slf4j', name: 'slf4j-nop', version: '2.0.7'
 }
 
-task generateSchema {
+tasks.register('generateSchema') {
     group = "jsontools"
     description = "Generate a JSON schema from annotated Java classes"
 
@@ -46,7 +46,7 @@ task generateSchema {
         URLClassLoader urlClassLoader = new URLClassLoader(urls, this.getClass().getClassLoader())
 
         // Load the Film class using the URLClassLoader
-        Class<?> filmClass = urlClassLoader.loadClass("model.Film")
+        Class<?> movieClass = urlClassLoader.loadClass("model.Movie")
 
         // Configure JSON schema generator
         def module = new JacksonModule(JacksonOption.RESPECT_JSONPROPERTY_ORDER)
@@ -56,7 +56,7 @@ task generateSchema {
         def generator = new SchemaGenerator(config)
 
         // Generate JSON schema
-        def jsonSchema = generator.generateSchema(filmClass)
+        def jsonSchema = generator.generateSchema(movieClass)
         def jsonSchemaAsString = jsonSchema.toPrettyString()
         println jsonSchemaAsString
 

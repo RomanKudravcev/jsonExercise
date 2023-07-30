@@ -5,16 +5,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonPropertyOrder({"id", "name", "price", "genre"})
-public class Film {
+public class Movie {
     private int id;
     private String name;
     private int price;
     private Genre genre;
     @JsonCreator
-    public Film(@JsonProperty("id") int id,
-                @JsonProperty("name") String name,
-                @JsonProperty("price") int price,
-                @JsonProperty("genre") Genre genre) {
+    public Movie(@JsonProperty("id") int id,
+                 @JsonProperty("name") String name,
+                 @JsonProperty("price") int price,
+                 @JsonProperty("genre") Genre genre) {
         this.id = id;
         this.name = name;
         this.price = price;

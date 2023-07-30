@@ -1,8 +1,0 @@
-{
-  "id" : 1,
-  "name" : "Oppenheimer",
-  "price" : 20,
-  "genre" : {
-    "name" : "fun"
-  }
-}

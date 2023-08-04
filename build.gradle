@@ -36,6 +36,7 @@ dependencies {
 tasks.register('generateSchema') {
     group = "jsontools"
     description = "Generate a JSON schema from annotated Java classes"
+    dependsOn 'compileJava'
 
     doLast {
         def classDirectory = file("./build/classes/java/main")
